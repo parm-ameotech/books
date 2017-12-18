@@ -6,8 +6,7 @@ const patternForChar = /[a-z,A-z]/;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [NgbPaginationConfig]
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
     title = 'app';
