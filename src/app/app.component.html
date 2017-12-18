@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let value of booksDetail | paginate: { itemsPerPage: 5, currentPage: p }">
+      <tr *ngFor="let value of booksDetail">
         <td>
             <span *ngIf="!editMode || authorId != value.id" >{{value.name}}</span>
             <input placeholder="Name" (keyup)="inputChanged()" (change)="inputChanged()" (keypress)="_keyPressForChar($event)"
@@ -43,8 +43,5 @@
       </tr>
     </tbody>
   </table>
-      <div style="text-align:center;">
-          <pagination-controls (pageChange)="p = $event"></pagination-controls>
-      </div>
   </div>
 </div>
