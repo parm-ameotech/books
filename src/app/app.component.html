@@ -3,7 +3,7 @@
   <h2>Table</h2>
   <p></p>                                                                                      
   <div class="table-responsive">          
-  <table class="table" id="example">
+  <table id="example" class="display table" cellspacing="0" >
     <thead>
       <tr style="cursor:pointer;">
         <th>Name</th>
@@ -36,9 +36,13 @@
                    [ngModel]="editDate | date:'yyyy-MM-dd'" type="date" required name="editDate" *ngIf="editMode && authorId == value.id" />
         </td>
         <td>
-          <button (click)="editValues(value)" *ngIf="!editMode">EDIT</button>
-            <button (click)="saveValues(value.id)" *ngIf="editMode" [disabled]="saveButton">SAVE</button>
-            <button (click)="cancelEdit()" *ngIf="editMode">CANCEL</button>
+            <div *ngIf="!editMode">
+                <button (click)="editValues(value)" >EDIT</button>
+            </div>
+            <div *ngIf="editMode && authorId == value.id">
+                <button (click)="saveValues(value.id)"  [disabled]="saveButton || authorId != value.id">SAVE</button>
+                <button (click)="cancelEdit()" [disabled]="authorId != value.id">CANCEL</button>
+            </div>
         </td>
       </tr>
     </tbody>
