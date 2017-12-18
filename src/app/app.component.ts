@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
+
 const patternForNum = /[0-9]/;
 const patternForChar = /[a-z,A-z]/;
 
@@ -19,15 +19,10 @@ export class AppComponent {
     editDate: Date;
     authorId: number;
 
-    constructor(config: NgbPaginationConfig) {
-        // customize default values of paginations used by this component tree
-        config.size = 'sm';
-        config.boundaryLinks = true;
-    }
-
     ngOnInit() {
         this.inputChanged();
     }
+	
     booksDetail = [
         {
            id:"0", name: "my", authors: "abc",  pages: "12", date: new Date(),
