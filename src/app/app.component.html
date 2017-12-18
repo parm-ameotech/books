@@ -1,0 +1,50 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+  <h2>Table</h2>
+  <p></p>                                                                                      
+  <div class="table-responsive">          
+  <table class="table" id="example">
+    <thead>
+      <tr style="cursor:pointer;">
+        <th>Name</th>
+        <th>Authors</th>
+        <th>Number of pages</th>
+        <th>Date of publication</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let value of booksDetail | paginate: { itemsPerPage: 5, currentPage: p }">
+        <td>
+            <span *ngIf="!editMode || authorId != value.id" >{{value.name}}</span>
+            <input placeholder="Name" (keyup)="inputChanged()" (change)="inputChanged()" (keypress)="_keyPressForChar($event)"
+                   [(ngModel)]="editName" type="text" required name="name" *ngIf="editMode && authorId == value.id"/>
+        </td>
+        <td>
+            <span *ngIf="!editMode || authorId != value.id" >{{value.authors}}</span>
+            <input placeholder="Author"  class="name{{value.id}}" (keyup)="inputChanged()" (change)="inputChanged()" (keypress)="_keyPressForChar($event)"
+                   [(ngModel)]="editAuthors" type="text" required name="editAuthors" *ngIf="editMode && authorId == value.id"/>
+        </td>
+        <td>
+            <span *ngIf="!editMode || authorId != value.id" >{{value.pages}}</span>
+            <input placeholder="Number of pages"  (keyup)="inputChanged()" (change)="inputChanged()" (keypress)="_keyPress($event)"
+                   [(ngModel)]="editPages" type="text" required name="editPages" *ngIf="editMode && authorId == value.id"/>
+          </td>
+        <td>
+            <span *ngIf="!editMode || authorId != value.id" >{{value.date | date:'yyyy-MM-dd'}}</span>
+            <input placeholder="Date of publication" (keyup)="inputChanged()" (change)="getDate($event)" (keypress)="_keyPressForChar($event)"
+                   [ngModel]="editDate | date:'yyyy-MM-dd'" type="date" required name="editDate" *ngIf="editMode && authorId == value.id" />
+        </td>
+        <td>
+          <button (click)="editValues(value)" *ngIf="!editMode">EDIT</button>
+            <button (click)="saveValues(value.id)" *ngIf="editMode" [disabled]="saveButton">SAVE</button>
+            <button (click)="cancelEdit()" *ngIf="editMode">CANCEL</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+      <div style="text-align:center;">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+  </div>
+</div>
