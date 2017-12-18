@@ -17,12 +17,12 @@
       <tr *ngFor="let value of booksDetail">
         <td>
             <span *ngIf="!editMode || authorId != value.id" >{{value.name}}</span>
-            <input placeholder="Name" (keyup)="inputChanged()" (change)="inputChanged()" (keypress)="_keyPressForChar($event)"
+            <input placeholder="Name" (keyup)="inputChanged()" (change)="inputChanged()"
                    [(ngModel)]="editName" type="text" required name="name" *ngIf="editMode && authorId == value.id"/>
         </td>
         <td>
             <span *ngIf="!editMode || authorId != value.id" >{{value.authors}}</span>
-            <input placeholder="Author"  class="name{{value.id}}" (keyup)="inputChanged()" (change)="inputChanged()" (keypress)="_keyPressForChar($event)"
+            <input placeholder="Author"  class="name{{value.id}}" (keyup)="inputChanged()" (change)="inputChanged()"
                    [(ngModel)]="editAuthors" type="text" required name="editAuthors" *ngIf="editMode && authorId == value.id"/>
         </td>
         <td>
@@ -32,7 +32,7 @@
           </td>
         <td>
             <span *ngIf="!editMode || authorId != value.id" >{{value.date | date:'yyyy-MM-dd'}}</span>
-            <input placeholder="Date of publication" (keyup)="inputChanged()" (change)="getDate($event)" (keypress)="_keyPressForChar($event)"
+            <input placeholder="Date of publication" (keyup)="inputChanged()" (change)="getDate($event)" (keypress)="_keyPress($event)"
                    [ngModel]="editDate | date:'yyyy-MM-dd'" type="date" required name="editDate" *ngIf="editMode && authorId == value.id" />
         </td>
         <td>
